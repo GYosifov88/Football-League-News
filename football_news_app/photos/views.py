@@ -13,7 +13,7 @@ class PhotoListView(ListView):
     model = Photo
     template_name = 'photos/gallery-massonry.html'
 
-    default_paginate_by = 20
+    default_paginate_by = 15
 
     def get_photos_page(self):
         return self.request.GET.get('page', 1)

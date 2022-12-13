@@ -1,8 +1,6 @@
 {% extends 'base/base.html' %}
 {% load static %}
 {% block page_content %}
-    <!--Header End-->
-    <!--Main Slider Start-->
     <div class="inner-banner-header wf100">
         <h1 data-generated="Gallery ">Gallery</h1>
         <div class="gt-breadcrumbs">
@@ -12,7 +10,6 @@
             </ul>
         </div>
     </div>
-    <!--Main Slider Start-->
     <!--Main Content Start-->
     <div class="main-content innerpagebg wf100">
         <!--Image Gallery Start-->
@@ -44,14 +41,23 @@
                                     </li>
                                 {% endif %}
 
+                                {% if photos.number|add:'-4' > 1 %}
+                                    <li><a class="page-link" href="?page={{ photos.number|add:'-5' }}">&hellip;</a></li>
+                                {% endif %}
+
                                 {% for p in photos.paginator.page_range %}
                                     {% if photos.number == p %}
-                                        <li class="page-item"><a class="page-link" style="color: red;"
-                                                                 href="#">{{ p }}</a></li>
-                                    {% else %}
-                                        <li class="page-item"><a class="page-link" href="?page={{ p }}">{{ p }}</a></li>
+                                        <li class="page-item"><span class="page-link">{{ p }} <span
+                                                class="sr-only">(current)</span></span>
+                                        </li>
+                                    {% elif p > photos.number|add:'-5' and p < photos.number|add:'5' %}
+                                        <li class="active"><a class="page-link" href="?page={{ p }}">{{ p }}</a></li>
                                     {% endif %}
                                 {% endfor %}
+
+                                {% if photos.paginator.num_pages > photos.number|add:'4' %}
+                                    <li><a class="page-link" href="?page={{ photos.number|add:'5' }}">&hellip;</a></li>
+                                {% endif %}
 
                                 {% if photos.has_next %}
                                     <li class="page-item">

@@ -10,7 +10,6 @@
                     {% if request.user.is_authenticated %}
                         <li class="acctount-btn"><a href="{% url 'details user' pk=request.user.pk %}">My Account</a>
                         </li>
-                        {#                           <li class="search-btn"> <a href="#"><i class="fas fa-search"></i></a> </li>#}
                         <a href="{% url 'logout user' %}">
                             <i>Sign out</i>
                         </a>

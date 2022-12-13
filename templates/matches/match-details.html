@@ -1,8 +1,6 @@
 {% extends 'base/base.html' %}
 {% load static %}
 {% block page_content %}
-    <!--Header End-->
-    <!--Main Slider Start-->
     <div class="match-header wf100">
         <div class="last-match-result-full-light">
             <div class="row">
@@ -42,8 +40,6 @@
         <li><i class="fas fa-map-marker-alt"></i> {{ match.match_location }}</li>
          <p><img src="/media/{{ match.photo }}" alt=""></p>
     </ul>
-    <!--Main Slider Start-->
-    <!--Main Content Start-->
     <div class="main-content innerpagebg wf100 p80">
         <div class="match-players">
             <div class="row">
@@ -82,9 +78,5 @@
                 </div>
             </div>
         </div>
-        <!--widget End-->
     </div>
-    <!--Sidebar End-->
-    <!--End-->
-    <!--Main Content End-->
 {% endblock %}

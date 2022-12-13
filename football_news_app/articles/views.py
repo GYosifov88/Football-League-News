@@ -22,7 +22,7 @@ class ArticlesListView(ListView):
 
     def get_paginated_articles(self):
         page = self.get_article_page()
-        articles = self.object_list.all()
+        articles = self.object_list.all().order_by('-publication_date')
         paginator = Paginator(articles, self.articles_paginate_by)
         return paginator.get_page(page)
 

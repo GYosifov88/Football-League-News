@@ -2,8 +2,6 @@
 {% load placeholders %}
 {% load static %}
 {% block page_content %}
-    <!--Header End-->
-    <!--Main Slider Start-->
     <div class="inner-banner-header wf100">
         <h1 data-generated="Sign Up">Sign Up</h1>
         <div class="gt-breadcrumbs">
@@ -13,15 +11,12 @@
             </ul>
         </div>
     </div>
-    <!--Main Slider Start-->
     <!--Main Content Start-->
     <div class="main-content innerpagebg wf100 p80">
-        <!--News Large Page Start-->
         <!--Start-->
         <div class="news-details">
             <div class="container">
                 <div class="row">
-                    <!--News Start-->
                     <div class="contact-form">
                         <div class="login-register-div">
                             <div class="login-register-box">
@@ -39,14 +34,13 @@
                                 </form>
                             </div>
                             <div class="second-option-2">
-                                <p>Have an account? <a class="team-my-a" href="{% url 'login user' %}">Log in</a></p>
+                                <p>Have an account? <a href="{% url 'login user' %}">Log in</a></p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!--News End-->
     </div>
 
 {% endblock %}

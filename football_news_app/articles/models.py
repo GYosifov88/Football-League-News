@@ -14,7 +14,7 @@ class Article(StrFromFieldsMixin, models.Model):
     MIN_DESCRIPTION_LENGTH = 10
     MAX_DESCRIPTION_LENGTH = 500
     MAX_AUTHOR_NAME = 40
-    MAX_LEN_TITLE = 40
+    MAX_LEN_TITLE = 100
 
     title = models.CharField(
         max_length=MAX_LEN_TITLE,

@@ -25,7 +25,8 @@
                         {% for player in players %}
                             <div class="col-md-6">
                                 <div class="player-box">
-                                    <div class="player-thumb"><img style="width: 260px; height: 260px" src="/media/{{ player.personal_photo }}" alt="">
+                                    <div class="player-thumb"><img style="width: 260px; height: 260px"
+                                                                   src="/media/{{ player.personal_photo }}" alt="">
                                     </div>
                                     <div class="player-txt">
                                         <div class="num">{{ player.team_number }}</div>
@@ -33,12 +34,10 @@
                                         <strong class="player-desi">{{ player.position }}</strong>
 
                                         <ul>
-                                             <li>{{ player.matches }} <span>Matches</span></li>
+                                            <li>{{ player.matches }} <span>Matches</span></li>
                                             <li>{{ player.rating }} <span>Rating</span></li>
                                             <li>{{ player.goals }} <span>Goals</span></li>
                                             <li>{{ player.assists }} <span>Assists</span></li>
-{#                                                                    <li>{{ player.date_of_birth }} <span>Date of birth</span></li>#}
-
                                             <li style="width: 100%;">{{ player.team }} <span>Team</span></li>
                                             <li></li>
                                         </ul>
@@ -68,14 +67,23 @@
                                     </li>
                                 {% endif %}
 
+                                {% if players.number|add:'-4' > 1 %}
+                                    <li><a class="page-link" href="?page={{ players.number|add:'-5' }}">&hellip;</a></li>
+                                {% endif %}
+
                                 {% for p in players.paginator.page_range %}
                                     {% if players.number == p %}
-                                        <li class="page-item"><a class="page-link" style="color: red;"
-                                                                 href="#">{{ p }}</a></li>
-                                    {% else %}
-                                        <li class="page-item"><a class="page-link" href="?page={{ p }}">{{ p }}</a></li>
+                                        <li class="page-item"><span class="page-link">{{ p }} <span
+                                                class="sr-only">(current)</span></span>
+                                        </li>
+                                    {% elif p > players.number|add:'-5' and p < players.number|add:'5' %}
+                                        <li class="active"><a class="page-link" href="?page={{ p }}">{{ p }}</a></li>
                                     {% endif %}
                                 {% endfor %}
+
+                                {% if players.paginator.num_pages > players.number|add:'4' %}
+                                    <li><a class="page-link" href="?page={{ players.number|add:'5' }}">&hellip;</a></li>
+                                {% endif %}
 
                                 {% if players.has_next %}
                                     <li class="page-item">

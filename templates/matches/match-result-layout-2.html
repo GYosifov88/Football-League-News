@@ -1,8 +1,6 @@
 {% extends 'base/base.html' %}
 {% load static %}
 {% block page_content %}
-    <!--Header End-->
-    <!--Main Slider Start-->
     <div class="inner-banner-header wf100">
         <h1 data-generated="Matches">Matches</h1>
         <div class="gt-breadcrumbs">
@@ -12,10 +10,8 @@
             </ul>
         </div>
     </div>
-    <!--Main Slider Start-->
     <!--Main Content Start-->
     <div class="main-content innerpagebg wf100">
-        <!--Match Result Start-->
         <div class="match-results wf100 p80">
             <div class="container">
                 <div class="row">
@@ -62,46 +58,54 @@
                             <!--Box End-->
                         {% endfor %}
                         {% if matches.has_other_pages %}
-                            <nav>
-                                <ul class="pagination justify-content-center">
-                                    {% if matches.has_previous %}
-                                        <li class="page-item">
-                                            <a class="page-link" href="?page={{ matches.previous_page_number }}"
-                                               aria-label="Previous">
-                                                <span aria-hidden="true">&laquo;</span>
-                                            </a>
-                                        </li>
-                                    {% else %}
-                                        <li class="page-item disabled">
-                                            <span class="page-link" aria-hidden="true">&laquo;</span>
-                                        </li>
-                                    {% endif %}
+                        <nav>
+                            <ul class="pagination justify-content-center">
+                                {% if matches.has_previous %}
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page={{ matches.previous_page_number }}"
+                                           aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                {% else %}
+                                    <li class="page-item disabled">
+                                        <span class="page-link" aria-hidden="true">&laquo;</span>
+                                    </li>
+                                {% endif %}
 
-                                    {% for p in matches.paginator.page_range %}
-                                        {% if matches.number == p %}
-                                            <li class="page-item"><a class="page-link" style="color: red;"
-                                                                     href="#">{{ p }}</a></li>
-                                        {% else %}
-                                            <li class="page-item"><a class="page-link" href="?page={{ p }}">{{ p }}</a>
-                                            </li>
-                                        {% endif %}
-                                    {% endfor %}
+                                {% if matches.number|add:'-4' > 1 %}
+                                    <li><a class="page-link" href="?page={{ matches.number|add:'-5' }}">&hellip;</a></li>
+                                {% endif %}
 
-                                    {% if matches.has_next %}
-                                        <li class="page-item">
-                                            <a class="page-link" href="?page={{ matches.next_page_number }}"
-                                               aria-label="Next">
-                                                <span aria-hidden="true">&raquo;</span>
-                                            </a>
+                                {% for p in matches.paginator.page_range %}
+                                    {% if matches.number == p %}
+                                        <li class="page-item"><span class="page-link">{{ p }} <span
+                                                class="sr-only">(current)</span></span>
                                         </li>
-                                    {% else %}
-                                        <li class="page-item disabled">
-                                            <span class="page-link" aria-hidden="true">&raquo;</span>
-                                        </li>
+                                    {% elif p > matches.number|add:'-5' and p < matches.number|add:'5' %}
+                                        <li class="active"><a class="page-link" href="?page={{ p }}">{{ p }}</a></li>
                                     {% endif %}
-                                </ul>
-                            </nav>
-                        {% endif %}
+                                {% endfor %}
+
+                                {% if matches.paginator.num_pages > matches.number|add:'4' %}
+                                    <li><a class="page-link" href="?page={{ matches.number|add:'5' }}">&hellip;</a></li>
+                                {% endif %}
+
+                                {% if matches.has_next %}
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page={{ matches.next_page_number }}"
+                                           aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                {% else %}
+                                    <li class="page-item disabled">
+                                        <span class="page-link" aria-hidden="true">&raquo;</span>
+                                    </li>
+                                {% endif %}
+                            </ul>
+                        </nav>
+                    {% endif %}
                     </div>
                 </div>
             </div>

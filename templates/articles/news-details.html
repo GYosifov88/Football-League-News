@@ -1,8 +1,6 @@
 {% extends 'base/base.html' %}
 {% load static %}
 {% block page_content %}
-    <!--Header End-->
-    <!--Main Slider Start-->
     <div class="inner-banner-header wf100">
         <h1 data-generated="News Details">News Details</h1>
         <div class="gt-breadcrumbs">
@@ -14,7 +12,6 @@
         </div>
     </div>
 
-    <!--Main Slider Start-->
     <!--Main Content Start-->
 
     <div class="main-content innerpagebg wf100 p80">
@@ -40,7 +37,7 @@
 									<a href="{% url 'like article' article_pk=article.pk %}">
 										<!-- IF user has liked the photo -->
                                         {% if is_liked %}
-                                            {#                                            <i class="fa fa-heart" aria-hidden="true"></i>#}
+
                                             <svg style="color: red"
                                                  xmlns="http://www.w3.org/2000/svg"
                                                  width="15"
@@ -57,7 +54,7 @@
                                         </svg>
                                             <!-- IF NOT user has liked the photo -->
                                         {% else %}
-                                            {#                                            <i class="fa fa-heart-o" aria-hidden="true"></i>#}
+
                                             <svg
                                                     aria-label="Like"
                                                     color="#262626"
@@ -110,7 +107,6 @@
                                             </ul>
                                         {% endfor %}
                                     </div>
-
                                     <!--Post Comments End-->
                                     <!--comments form Start-->
 
@@ -127,15 +123,12 @@
                                             {% csrf_token %}
 
                                         </form>
-
                                     </div>
-
                                     <!--comments form End-->
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!--News End-->
                 </div>
             </div>
         </div>

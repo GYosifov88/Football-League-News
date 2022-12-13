@@ -1,8 +1,6 @@
 {% extends 'base/base.html' %}
 {% load static %}
 {% block page_content %}
-    <!--Header End-->
-    <!--Main Slider Start-->
     <div class="inner-banner-header wf100">
         <h1 data-generated="Contact Us">Contact Us</h1>
         <div class="gt-breadcrumbs">
@@ -12,7 +10,6 @@
             </ul>
         </div>
     </div>
-    <!--Main Slider Start-->
     <!--Main Content Start-->
     <div class="main-content p80 innerpagebg wf100">
         <!--Contact Page Start-->
@@ -24,9 +21,7 @@
                         <div class="contact-box">
                             <img src="{% static 'images/loc-icon.png' %}" alt="">
                             <h5>Address:</h5>
-                            <p> Dimcho Debelyanov #5, Varna,
-                                9000, Bulgaria
-                            </p>
+                            <p> Varna Varna #1, Varna, 9000, Bulgaria</p>
                         </div>
                     </div>
                     <!--End-->
@@ -57,7 +52,6 @@
         <div class="google-map">
             <div class="google-map">
                 <img src="{% static 'images/Football_site_map.jpg' %}" alt="">
-                {#                  <iframe src="{% static 'images/Football_site_map.jpg' %}"></iframe>#}
             </div>
         </div>
         <div class="contact-two wf100 p80-0">
@@ -71,9 +65,9 @@
                             <ul class="form-row">
                                 <form method="post" action="{% url 'contacts' %}">
                                     {{ form.as_p }}
-                                    {#                              <li class="full-col">#}
+
                                     <button>Contact us Now</button>
-                                    {#                              </li>#}
+
                                     {% csrf_token %}
                                 </form>
                             </ul>

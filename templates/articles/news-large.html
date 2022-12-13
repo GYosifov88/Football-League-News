@@ -1,8 +1,6 @@
 {% extends 'base/base.html' %}
 {% load static %}
 {% block page_content %}
-    <!--Header End-->
-    <!--Main Slider Start-->
     <div class="inner-banner-header wf100">
         <h1 data-generated="Latest News">Latest News</h1>
         <div class="gt-breadcrumbs">
@@ -12,7 +10,6 @@
             </ul>
         </div>
     </div>
-    <!--Main Slider Start-->
     <!--Main Content Start-->
     <div class="main-content innerpagebg wf100 p80">
         <!--News Large Page Start-->
@@ -33,8 +30,6 @@
                                         <ul class="post-meta">
                                             <li><i class="fas fa-user"></i> {{ article.author }}</li>
                                             <li><i class="fas fa-calendar-alt"></i> {{ article.publication_date }}</li>
-                                            {#                        <li><i class="far fa-comment"></i> {{ article.comments_count }} Comments</li>#}
-                                            {#                        <li><i class="far fa-heart"></i> {{ article.likes_count }} Likes</li>#}
                                         </ul>
                                         <p class="news-list-new"> {{ article.description }} </p>
                                         <a href="{% url 'article details' pk=article.pk %}" class="rm">Read More</a>
@@ -44,7 +39,6 @@
                             <!--Post End-->
                         </div>
                     </div>
-
                     <!--News End-->
                     <!--Sidebar Start-->
                     <div class="widget">
@@ -70,46 +64,56 @@
                     </div>
                 </div>
             </div>
-            <!--Sidebar End-->
         </div>
         {% if articles.has_other_pages %}
-            <nav>
-                <ul class="pagination justify-content-center">
-                    {% if articles.has_previous %}
-                        <li class="page-item">
-                            <a class="page-link" href="?page={{ articles.previous_page_number }}" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                            </a>
-                        </li>
-                    {% else %}
-                        <li class="page-item disabled">
-                            <span class="page-link" aria-hidden="true">&laquo;</span>
-                        </li>
-                    {% endif %}
+                        <nav>
+                            <ul class="pagination justify-content-center">
+                                {% if articles.has_previous %}
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page={{ articles.previous_page_number }}"
+                                           aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                {% else %}
+                                    <li class="page-item disabled">
+                                        <span class="page-link" aria-hidden="true">&laquo;</span>
+                                    </li>
+                                {% endif %}
 
-                    {% for p in articles.paginator.page_range %}
-                        {% if articles.number == p %}
-                            <li class="page-item"><a class="page-link" style="color: red;" href="#">{{ p }}</a></li>
-                        {% else %}
-                            <li class="page-item"><a class="page-link" href="?page={{ p }}">{{ p }}</a></li>
-                        {% endif %}
-                    {% endfor %}
+                                {% if articles.number|add:'-4' > 1 %}
+                                    <li><a class="page-link" href="?page={{ articles.number|add:'-5' }}">&hellip;</a></li>
+                                {% endif %}
 
-                    {% if articles.has_next %}
-                        <li class="page-item">
-                            <a class="page-link" href="?page={{ articles.next_page_number }}" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                            </a>
-                        </li>
-                    {% else %}
-                        <li class="page-item disabled">
-                            <span class="page-link" aria-hidden="true">&raquo;</span>
-                        </li>
+                                {% for p in articles.paginator.page_range %}
+                                    {% if articles.number == p %}
+                                        <li class="page-item"><span class="page-link">{{ p }} <span
+                                                class="sr-only">(current)</span></span>
+                                        </li>
+                                    {% elif p > articles.number|add:'-5' and p < articles.number|add:'5' %}
+                                        <li class="active"><a class="page-link" href="?page={{ p }}">{{ p }}</a></li>
+                                    {% endif %}
+                                {% endfor %}
+
+                                {% if articles.paginator.num_pages > articles.number|add:'4' %}
+                                    <li><a class="page-link" href="?page={{ articles.number|add:'5' }}">&hellip;</a></li>
+                                {% endif %}
+
+                                {% if articles.has_next %}
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page={{ articles.next_page_number }}"
+                                           aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                {% else %}
+                                    <li class="page-item disabled">
+                                        <span class="page-link" aria-hidden="true">&raquo;</span>
+                                    </li>
+                                {% endif %}
+                            </ul>
+                        </nav>
                     {% endif %}
-                </ul>
-            </nav>
-        {% endif %}
     </div>
-
     <!--Main Content End-->
 {% endblock %}
