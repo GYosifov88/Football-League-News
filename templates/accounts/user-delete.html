@@ -1,0 +1,49 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block page_content %}
+    <!--Header End-->
+    <!--Main Slider Start-->
+    <div class="inner-banner-header wf100">
+        <h1 data-generated="User Delete">User Delete</h1>
+        <div class="gt-breadcrumbs">
+            <ul>
+                <li><a href="{% url 'index' %}" class="active"> <i class="fas fa-home"></i> Home </a></li>
+                <li><a href="#"> User Delete </a></li>
+            </ul>
+
+        </div>
+    </div>
+    <!--Main Slider Start-->
+    <!--Main Content Start-->
+    <div class="main-content innerpagebg wf100 p80">
+
+        <!--News Large Page Start-->
+
+        <!--Start-->
+        <div class="news-details">
+            <div class="container">
+                <div class="row">
+                    <!--News Start-->
+                    <div class="col-lg-8">
+                        <div class="news-details-wrap">
+                            <div class="news-large-post">
+                                <h1>Are you sure you want to delete your profile?</h1>
+                                <form method="post" action="{% url 'delete user' pk=user.pk %}">
+                                    {{ form.as_p }}
+                                    <button class="edit-own" type="submit">Delete User</button>
+                                    {% csrf_token %}
+                                </form>
+                                <a href="javascript:history.back()">Go Back</a>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--News End-->
+            </div>
+        </div>
+    </div>
+    <!--End-->
+    <!--Main Content End-->
+    <!--Main Footer Start-->
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block page_content %}
+    <!--Header End-->
+    <!--Main Slider Start-->
+    <div class="match-header wf100">
+        <div class="last-match-result-full-light">
+            <div class="row">
+                <div class="col-sm-4">
+
+                    <div class="match-right">
+                        <div class="mtl-right"><img id="team-info-pic" src="{{ team.team_logo_photo }}" alt="">
+                            <strong>{{ team.team_name }}</strong>Stadium: <strong>{{ team.stadium }}</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Main Slider Start-->
+        <!--Main Content Start-->
+        <div class="main-content innerpagebg wf100 p80">
+            <!--News Large Page Start-->
+            <div class="match-teams">
+                <div class="container">
+                    <div class="row">
+                        <!-- Players List Start-->
+                        <div class="col-lg-6 col-md-6">
+                            <h2>{{ team.team_name }}'s squad</h2>
+                            <!--Box Start-->
+                            {% for player in players %}
+                                <div class="player-box">
+                                    <div class="player-thumb"><img src="/media/{{ player.personal_photo }}" alt="">
+                                    </div>
+                                    <div class="player-txt">
+                                        <span class="star-tag"><i class="fas fa-star"></i></span>
+                                        <h3>{{ player.first_name }} {{ player.last_name }}</h3>
+                                        <strong class="player-desi">{{ player.position }}</strong>
+                                        <p> Hi, I am {{ player.first_name }} {{ player.last_name }} and I
+                                            am {{ player.position }} in {{ team.team_name }}. </p>
+                                        <ul>
+                                            <li>{{ player.rating }} <span>Rating</span></li>
+                                            <li>{{ player.goals }} <span>Goals</span></li>
+                                            <li>{{ player.assists }} <span>Assists</span></li>
+                                            <li>{{ player.date_of_birth }} <span>Date of birth</span></li>
+                                            <li>{{ player.nationality }} <span>Nationality</span></li>
+                                        </ul>
+                                        <a class="playerbio"
+                                           href="{% url 'player details' player_slug=player.slug pk=player.pk %}">Player
+                                            Biography <i class="far fa-arrow-alt-circle-right"></i></a>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                            <!--Box End-->
+                        </div>
+                        <!--Team Players List End-->
+                    </div>
+                </div>
+            </div>
+            <!--News Large Page Start-->
+        </div>
+    </div>
+    <!--Main Content End-->
+{% endblock %}

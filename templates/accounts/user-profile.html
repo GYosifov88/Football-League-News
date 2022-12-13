@@ -1,0 +1,123 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block page_content %}
+    <!--Header End-->
+    <!--Main Slider Start-->
+    <div class="inner-banner-header wf100">
+        <h1 data-generated="My Account">My Account</h1>
+        <div class="gt-breadcrumbs">
+            <ul>
+                <li><a href="{% url 'index' %}" class="active"> <i class="fas fa-home"></i> Home </a></li>
+                <li><a href="#"> My Account </a></li>
+            </ul>
+        </div>
+    </div>
+    <!--Main Slider Start-->
+    <!--Main Content Start-->
+    <div class="main-content innerpagebg wf100">
+        <!--team Page Start-->
+        <div class="team wf100 p80">
+            <!--Start-->
+            <div class="player-squad">
+                <div class="container">
+                    <div class="row">
+                        <!--Squad Start-->
+                        <div class="col-lg-8">
+                            <!--Player Box Start-->
+                            <div class="player-card staff">
+
+                                {% if not user.profile_photo %}
+                                    <div class="pimg"><img
+                                            src="{% static 'images/../../mediafiles/profile_photos/auser.jpg' %}"
+                                            alt=""></div>
+                                {% else %}
+                                    <div class="pimg"><img src="/media/{{ user.profile_photo }}" alt=""></div>
+                                {% endif %}
+                                <div class="player-details">
+                                    <h2>{{ user.first_name }} {{ user.last_name }}</h2>
+                                    <strong class="desi">Username: {{ user.username }}</strong> <span class="follow"><a
+                                        href="{% url 'edit user' pk=user.pk %}">Edit</a></span>
+                                    <ul>
+                                        <li> Email <strong>{{ user.email }}</strong></li>
+                                        <li> Photos Count <strong>{{ photos_count }}</strong></li>
+                                        <li>Likes Count <strong>{{ likes_count }}</strong></li>
+                                        <li> Date Joined <strong>{{ user.date_joined }}</strong></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!--Highlights & Gallery Start-->
+                            <div class="highlights-gallery gallery">
+                                <h2>Gallery</h2>
+                                <div class="container-fluid">
+                                    <div class="row">
+
+                                        <div class="col-md-12 p-05">
+                                            {% for photo in photos %}
+                                                <div class="hlg-thumb col-md-4">
+                                                    <p>
+                                                    <div class="gallery-thumb"><a
+                                                            href="{% url 'details photo' pk=photo.pk %}"><i
+                                                            class="fas fa-search"></i></a> <img
+                                                            src="/media/{{ photo.photo }}"
+                                                            alt=""></div>
+                                                    ></p>
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+
+                                    </div>
+                                    <p></p>
+                                    {% if photos.has_other_pages %}
+                                        <nav>
+                                            <ul class="pagination justify-content-left">
+                                                {% if photos.has_previous %}
+                                                    <li class="page-item">
+                                                        <a class="page-link"
+                                                           href="?page={{ photos.previous_page_number }}"
+                                                           aria-label="Previous">
+                                                            <span aria-hidden="true">&laquo;</span>
+                                                        </a>
+                                                    </li>
+                                                {% else %}
+                                                    <li class="page-item disabled">
+                                                        <span class="page-link" aria-hidden="true">&laquo;</span>
+                                                    </li>
+                                                {% endif %}
+
+                                                {% for p in photos.paginator.page_range %}
+                                                    {% if photos.number == p %}
+                                                        <li class="page-item"><a class="page-link" style="color: red;"
+                                                                                 href="#">{{ p }}</a></li>
+                                                    {% else %}
+                                                        <li class="page-item"><a class="page-link"
+                                                                                 href="?page={{ p }}">{{ p }}</a></li>
+                                                    {% endif %}
+                                                {% endfor %}
+
+                                                {% if photos.has_next %}
+                                                    <li class="page-item">
+                                                        <a class="page-link" href="?page={{ photos.next_page_number }}"
+                                                           aria-label="Next">
+                                                            <span aria-hidden="true">&raquo;</span>
+                                                        </a>
+                                                    </li>
+                                                {% else %}
+                                                    <li class="page-item disabled">
+                                                        <span class="page-link" aria-hidden="true">&raquo;</span>
+                                                    </li>
+                                                {% endif %}
+                                            </ul>
+                                        </nav>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--End-->
+        </div>
+        <!--team Page End-->
+    </div>
+    <!--Main Content End-->
+{% endblock %}

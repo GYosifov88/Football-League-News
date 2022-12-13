@@ -1,0 +1,90 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block page_content %}
+    <!--Header End-->
+    <!--Main Slider Start-->
+    <div class="match-header wf100">
+        <div class="last-match-result-full-light">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="match-left">
+                        <div class="mtl-left"><img src="{{ match.home_team.team_logo_photo }}" alt="">
+                            <strong>{{ match.home_team }}</strong></div>
+                        <div class="mscore"><strong>X</strong> ----</div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="lmr-info">
+                        <strong>{{ match.league }}</strong>
+                        <p>{{ match.league_stage }}</p>
+                        <img src="{% static 'images/sp.png' %}" alt="">
+                        <p>{{ match.match_date }}</p>
+                        <p>{{ match.match_location }}</p>
+
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="match-right">
+                        <div class="mscore-right">
+                            <div class="mscore"><strong>X</strong> ----</div>
+                        </div>
+                        <div class="mtl-right"><img src="{{ match.guest_team.team_logo_photo }}" alt="">
+                            <strong>{{ match.guest_team }}</strong></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <ul class="m-date-loc">
+        <li><i class="fas fa-calendar-alt"></i>{{ match.match_date }}</li>
+        <li class="pipeline"> |</li>
+        <li><i class="fas fa-map-marker-alt"></i> {{ match.match_location }}</li>
+         <p><img src="/media/{{ match.photo }}" alt=""></p>
+    </ul>
+    <!--Main Slider Start-->
+    <!--Main Content Start-->
+    <div class="main-content innerpagebg wf100 p80">
+        <div class="match-players">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="team-palyers">
+                        <h4>{{ match.home_team.team_name }}</h4>
+                        <table>
+                            {% for player in home_players %}
+                                <tr>
+                                    <td>{{ player.team_number }}</td>
+                                    <td>
+                                        <a href="{% url 'player details' player_slug=player.slug pk=player.pk %}"><strong>{{ player.first_name }} {{ player.last_name }}</strong></a>
+                                        <span>({{ player.position }})</span></td>
+                                    <td><i class="fas fa-square"></i> <i class="fas fa-futbol"></i></td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="team-palyers c2">
+                        <h4>{{ match.guest_team.team_name }}</h4>
+                        <table>
+                            {% for player in guest_players %}
+                                <tr>
+                                    <td>{{ player.team_number }}</td>
+                                    <td>
+                                        <a href="{% url 'player details' player_slug=player.slug pk=player.pk %}"><strong>{{ player.first_name }} {{ player.last_name }}</strong></a>
+                                        <span>({{ player.position }})</span></td>
+                                    <td><i class="fas fa-square"></i> <i class="fas fa-futbol"></i></td>
+
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--widget End-->
+    </div>
+    <!--Sidebar End-->
+    <!--End-->
+    <!--Main Content End-->
+{% endblock %}

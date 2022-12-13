@@ -1,0 +1,101 @@
+{% load static %}
+<!--topbar-->
+<div class="topbar">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-6">
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <ul class="toplinks">
+                    {% if request.user.is_authenticated %}
+                        <li class="acctount-btn"><a href="{% url 'details user' pk=request.user.pk %}">My Account</a>
+                        </li>
+                        {#                           <li class="search-btn"> <a href="#"><i class="fas fa-search"></i></a> </li>#}
+                        <a href="{% url 'logout user' %}">
+                            <i>Sign out</i>
+                        </a>
+                    {% else %}
+                        <li class="nav-item">
+                            <a href="{% url 'register user' %}">
+                                <i>Sign up</i>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{% url 'login user' %}">
+                                <i>Sign in</i>
+                            </a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!--topbar end-->
+<!--Logo + Navbar Start-->
+<div class="logo-navbar">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2 col-sm-5">
+                <div class="logo"><a href="{% url 'index' %}"><img src="{% static 'images/logo-dark.png' %}" alt=""></a>
+                </div>
+            </div>
+            <div class="col-md-10 col-sm-7">
+                <nav class="main-nav">
+                    <ul>
+                        <li class="nav-item drop-down">
+                            <a href="">Home</a>
+                            <ul>
+                                <li><a href="{% url 'index' %}">Home</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item drop-down">
+                            <a href="">Matches</a>
+                            <ul>
+                                <li><a href="{% url 'matches' %}">Matches</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item drop-down">
+                            <a href="">Teams</a>
+                            <ul>
+                                <li><a href="{% url 'teams' %}">Teams</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item drop-down">
+                            <a href="">Players</a>
+                            <ul>
+                                <li><a href="{% url 'players' %}">Players</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item drop-down">
+                            <a href="">News</a>
+                            <ul>
+                                <li><a href="{% url 'articles' %}">News</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item drop-down">
+                            <a href="">Gallery</a>
+                            {% if request.user.is_authenticated %}
+                                <ul>
+                                    <li><a href="{% url 'show photos' %}">Gallery</a></li>
+                                    <li><a href="{% url 'add photo' %}">Add Photo</a></li>
+                                </ul>
+                            {% else %}
+                                <ul>
+                                    <li><a href="{% url 'show photos' %}">Gallery</a></li>
+                                </ul>
+                            {% endif %}
+                        </li>
+                        <li class="nav-item drop-down">
+                            <a href="">Contact</a>
+                            <ul>
+                                <li><a href="{% url 'contacts' %}">Contact</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Logo + Navbar End-->

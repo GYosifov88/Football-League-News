@@ -1,0 +1,35 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+/********** |== Blue Background Color Start == | **********/
+
+.h4-probox:hover .cart-btn i,
+.contact-newsletter button:hover,
+.home-blue .point-table-widget table thead, .match-highlights, .home-blue .main-header .logo-navbar {
+	background-color: #2a2a82;
+}
+/********** |== Blue Background Color End == | **********/
+
+
+/********** |== Blue Text Color Start == | **********/
+.mv-txt h5 a, .h4-player-squad .player-box:hover .tp-info h4 a, .pro-txt h4 a, .h4-probox .pro-txt h4 a, .h4-news-box .news-txt h4 a, body .h4-stitle, .upcoming-live h5 {
+	color: #2a2a82;
+}
+/********** |== Blue Text Color End == | **********/
+
+
+/********** |== Blue Border Color Start == | **********/
+
+{
+ border-color: #2a2a82;
+}
+/********** |== Blue Border Color End == | **********/
+
+
+
+/********** |== Light Blue Border Color End == | **********/
+
+.upcoming-live .match-time:after, .home-blue .main-header .topbar {
+	background: #444b8c;
+}

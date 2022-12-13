@@ -1,0 +1,115 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block page_content %}
+    <!--Header End-->
+    <!--Main Slider Start-->
+    <div class="inner-banner-header wf100">
+        <h1 data-generated="Latest News">Latest News</h1>
+        <div class="gt-breadcrumbs">
+            <ul>
+                <li><a href="{% url 'index' %}" class="active"> <i class="fas fa-home"></i> Home </a></li>
+                <li><a href="{% url 'articles' %}"> News </a></li>
+            </ul>
+        </div>
+    </div>
+    <!--Main Slider Start-->
+    <!--Main Content Start-->
+    <div class="main-content innerpagebg wf100 p80">
+        <!--News Large Page Start-->
+        <!--Start-->
+        <div class="news-large">
+            <div class="container">
+                <div class="row">
+                    <!--News Start-->
+                    <div class="col-lg-8">
+                        <div class="news-wrap">
+                            <!--Post Start-->
+                            {% for article in articles %}
+                                <div class="news-large-post">
+                                    <div class="post-thumb"><img src="/media/{{ article.photo }}" alt=""></div>
+                                    <div class="post-txt">
+                                        <h3><a href="{% url 'article details' pk=article.pk %}">{{ article.title }}</a>
+                                        </h3>
+                                        <ul class="post-meta">
+                                            <li><i class="fas fa-user"></i> {{ article.author }}</li>
+                                            <li><i class="fas fa-calendar-alt"></i> {{ article.publication_date }}</li>
+                                            {#                        <li><i class="far fa-comment"></i> {{ article.comments_count }} Comments</li>#}
+                                            {#                        <li><i class="far fa-heart"></i> {{ article.likes_count }} Likes</li>#}
+                                        </ul>
+                                        <p class="news-list-new"> {{ article.description }} </p>
+                                        <a href="{% url 'article details' pk=article.pk %}" class="rm">Read More</a>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                            <!--Post End-->
+                        </div>
+                    </div>
+
+                    <!--News End-->
+                    <!--Sidebar Start-->
+                    <div class="widget">
+                        <h4>Teams in the league</h4>
+                        <div class="point-table-widget">
+                            <table>
+                                <thead>
+                                <tr>
+                                    <th>Team</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for team in teams %}
+                                    <tr>
+                                        <td>
+                                            <a href="{% url 'team details' team_slug=team.slug pk=team.pk %}"><strong>{{ team.team_name }}</strong></a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Sidebar End-->
+        </div>
+        {% if articles.has_other_pages %}
+            <nav>
+                <ul class="pagination justify-content-center">
+                    {% if articles.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ articles.previous_page_number }}" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                    {% else %}
+                        <li class="page-item disabled">
+                            <span class="page-link" aria-hidden="true">&laquo;</span>
+                        </li>
+                    {% endif %}
+
+                    {% for p in articles.paginator.page_range %}
+                        {% if articles.number == p %}
+                            <li class="page-item"><a class="page-link" style="color: red;" href="#">{{ p }}</a></li>
+                        {% else %}
+                            <li class="page-item"><a class="page-link" href="?page={{ p }}">{{ p }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+
+                    {% if articles.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ articles.next_page_number }}" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    {% else %}
+                        <li class="page-item disabled">
+                            <span class="page-link" aria-hidden="true">&raquo;</span>
+                        </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        {% endif %}
+    </div>
+
+    <!--Main Content End-->
+{% endblock %}

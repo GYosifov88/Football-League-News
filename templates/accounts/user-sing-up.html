@@ -1,0 +1,52 @@
+{% extends 'base/base.html' %}
+{% load placeholders %}
+{% load static %}
+{% block page_content %}
+    <!--Header End-->
+    <!--Main Slider Start-->
+    <div class="inner-banner-header wf100">
+        <h1 data-generated="Sign Up">Sign Up</h1>
+        <div class="gt-breadcrumbs">
+            <ul>
+                <li><a href="{% url 'index' %}" class="active"> <i class="fas fa-home"></i> Home </a></li>
+                <li><a href="#"> Sign Up </a></li>
+            </ul>
+        </div>
+    </div>
+    <!--Main Slider Start-->
+    <!--Main Content Start-->
+    <div class="main-content innerpagebg wf100 p80">
+        <!--News Large Page Start-->
+        <!--Start-->
+        <div class="news-details">
+            <div class="container">
+                <div class="row">
+                    <!--News Start-->
+                    <div class="contact-form">
+                        <div class="login-register-div">
+                            <div class="login-register-box">
+                                <form method="post" action="{% url 'register user' %}">
+                                    {{ form.username|placeholder:'Username: ' }}
+                                    {{ form.username.errors }}
+                                    {{ form.email|placeholder:'Email: ' }}
+                                    {{ form.email.errors }}
+                                    {{ form.password1|placeholder:'Password: ' }}
+                                    {{ form.password1.errors }}
+                                    {{ form.password2|placeholder:'Repeat password: ' }}
+                                    {{ form.password2.errors }}
+                                    <button class="edit-own" type="submit">Sign Up</button>
+                                    {% csrf_token %}
+                                </form>
+                            </div>
+                            <div class="second-option-2">
+                                <p>Have an account? <a class="team-my-a" href="{% url 'login user' %}">Log in</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--News End-->
+    </div>
+
+{% endblock %}

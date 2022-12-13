@@ -1,0 +1,103 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block page_content %}
+    <!--Header End-->
+    <!--Main Slider Start-->
+    <div class="inner-banner-header wf100">
+        <h1 data-generated="Top Players">TOP PLAYERS IN THE LEAGUE</h1>
+        <div class="gt-breadcrumbs">
+            <ul>
+                <li><a href="#" class="active"> <i class="fas fa-home"></i> Home </a></li>
+                <li><a href="{% url 'players' %}"> Top Players </a></li>
+            </ul>
+        </div>
+    </div>
+    <!--Main Slider Start-->
+    <!--Main Content Start-->
+    <div class="main-content innerpagebg wf100">
+        <!--team Page Start-->
+        <div class="team wf100 p80">
+            <!--Start-->
+            <div class="player-squad">
+                <div class="container">
+                    <div class="row">
+                        <!--Player Box Start-->
+                        {% for player in players %}
+                            <div class="col-md-6">
+                                <div class="player-box">
+                                    <div class="player-thumb"><img style="width: 260px; height: 260px" src="/media/{{ player.personal_photo }}" alt="">
+                                    </div>
+                                    <div class="player-txt">
+                                        <div class="num">{{ player.team_number }}</div>
+                                        <h3>{{ player.first_name }} {{ player.last_name }}</h3>
+                                        <strong class="player-desi">{{ player.position }}</strong>
+
+                                        <ul>
+                                             <li>{{ player.matches }} <span>Matches</span></li>
+                                            <li>{{ player.rating }} <span>Rating</span></li>
+                                            <li>{{ player.goals }} <span>Goals</span></li>
+                                            <li>{{ player.assists }} <span>Assists</span></li>
+{#                                                                    <li>{{ player.date_of_birth }} <span>Date of birth</span></li>#}
+
+                                            <li style="width: 100%;">{{ player.team }} <span>Team</span></li>
+                                            <li></li>
+                                        </ul>
+                                        <a class="playerbio"
+                                           href="{% url 'player details' player_slug=player.slug pk=player.pk %}">Player
+                                            Biography <i class="far fa-arrow-alt-circle-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Player Box End-->
+                        {% endfor %}
+
+                    </div>
+                    {% if players.has_other_pages %}
+                        <nav>
+                            <ul class="pagination justify-content-center">
+                                {% if players.has_previous %}
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page={{ players.previous_page_number }}"
+                                           aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                {% else %}
+                                    <li class="page-item disabled">
+                                        <span class="page-link" aria-hidden="true">&laquo;</span>
+                                    </li>
+                                {% endif %}
+
+                                {% for p in players.paginator.page_range %}
+                                    {% if players.number == p %}
+                                        <li class="page-item"><a class="page-link" style="color: red;"
+                                                                 href="#">{{ p }}</a></li>
+                                    {% else %}
+                                        <li class="page-item"><a class="page-link" href="?page={{ p }}">{{ p }}</a></li>
+                                    {% endif %}
+                                {% endfor %}
+
+                                {% if players.has_next %}
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page={{ players.next_page_number }}"
+                                           aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                {% else %}
+                                    <li class="page-item disabled">
+                                        <span class="page-link" aria-hidden="true">&raquo;</span>
+                                    </li>
+                                {% endif %}
+                            </ul>
+                        </nav>
+                    {% endif %}
+                </div>
+
+            </div>
+            <!--End-->
+        </div>
+        <!--team Page End-->
+    </div>
+    <!--Main Content End-->
+{% endblock %}

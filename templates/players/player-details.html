@@ -1,0 +1,60 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block page_content %}
+    <!--Header End-->
+    <!--Main Slider Start-->
+    <div class="inner-banner-header wf100">
+        <h1 data-generated="Player Detail">Player Details</h1>
+        <div class="gt-breadcrumbs">
+            <ul>
+                <li><a href="{% url 'players' %}" class="active"> <i class="fas fa-home"></i> Home </a></li>
+                <li><a href="{% url 'player details' player_slug=player.slug pk=player.pk %}"> Player </a></li>
+
+            </ul>
+        </div>
+    </div>
+    <!--Main Slider Start-->
+    <!--Main Content Start-->
+    <div class="main-content innerpagebg wf100">
+        <!--team Page Start-->
+        <div class="team wf100 p80">
+            <!--Start-->
+            <div class="player-squad">
+                <div class="container">
+                    <div class="row">
+                        <!--Squad Start-->
+                        <div class="col-lg-8">
+                            <!--Player Box Start-->
+                            <div class="player-card">
+                                <div class="pimg"><img src="/media/{{ player.personal_photo }}" alt=""></div>
+                                <div class="player-details">
+                                    <h2>{{ player.first_name }} {{ player.last_name }}</h2>
+                                    <strong class="desi">{{ player.position }}</strong>
+                                    <ul>
+                                        <li>Date of Birth <strong>{{ player.date_of_birth }}</strong></li>
+                                        <li> Nationality <strong>{{ player.nationality }}</strong></li>
+                                        <li> Number <strong>{{ player.team_number }}</strong></li>
+                                        <li> Total Goals <strong>{{ player.goals }}</strong></li>
+                                        <li> Total Assists <strong>{{ player.assists }}</strong></li>
+                                        <li> Games Played <strong>{{ player.matches }}</strong></li>
+                                        <li> Rating <strong>{{ player.rating }}</strong></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!--Player Box End-->
+                            <!--Player Biography Start-->
+                            <div class="player-bio">
+                                <h4>{{ player.first_name }}'s Biography</h4>
+                                <div class="txt">
+                                    <p>{{ player.biography }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--team Page End-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Main Content End-->
+{% endblock %}

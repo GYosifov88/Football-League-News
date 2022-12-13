@@ -1,0 +1,57 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% load placeholders %}
+{% block page_content %}
+    <!--Header End-->
+    <!--Main Slider Start-->
+    <div class="inner-banner-header wf100">
+        <h1 data-generated="Sign In">Sign In</h1>
+        <div class="gt-breadcrumbs">
+            <ul>
+                <li><a href="{% url 'index' %}" class="active"> <i class="fas fa-home"></i> Home </a></li>
+                <li><a href="#"> Sign In </a></li>
+            </ul>
+        </div>
+    </div>
+    <!--Main Slider Start-->
+    <!--Main Content Start-->
+    <div class="main-content innerpagebg wf100 p80">
+        <!--News Large Page Start-->
+        <!--Start-->
+        <div class="news-details">
+            <div class="container">
+                <div class="row">
+                    <!--News Start-->
+                    <div class="col-lg-8">
+                        <div class="news-details-wrap">
+                            <div class="contact-form">
+                                <div class="login-register-div">
+                                    <div class="login-register-box">
+                                        <form method="post" action="{% url 'login user' %}">
+                                            {% for error in form.non_field_errors %}
+                                                {{ error|escape }}
+                                            {% endfor %}
+                                            {{ form.username|placeholder:'Username: ' }}
+                                            {{ form.password|placeholder:'Password: ' }}
+                                            <p></p>
+                                            <button class="edit-own" type="submit">Sign In</button>
+                                            {% csrf_token %}
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="second-option">
+                        <p>Don't have account? <a class="team-my-a" href="{% url 'register user' %}">Register</a></p>
+                    </div>
+                </div>
+                <!--News End-->
+            </div>
+        </div>
+    </div>
+    <!--End-->
+    <!--Main Content End-->
+{% endblock %}

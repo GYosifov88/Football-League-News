@@ -1,0 +1,51 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block page_content %}
+    <!--Header End-->
+    <!--Main Slider Start-->
+    <div class="inner-banner-header wf100">
+        <h1 data-generated="Teams">Teams</h1>
+        <div class="gt-breadcrumbs">
+            <ul>
+                <li><a href="{% url 'index' %}" class="active"> <i class="fas fa-home"></i> Home </a></li>
+            </ul>
+        </div>
+    </div>
+    <!--Main Slider Start-->
+    <!--Main Content Start-->
+    <div class="main-content solidbg wf100">
+        <!--team Page Start-->
+        <div class="team wf100 p80">
+            <!--Start-->
+            <div class="point-table">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="point-table-widget">
+                                <table>
+                                    <thead>
+                                    <tr>
+                                        <th>Team</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for team in teams %}
+                                        <tr>
+                                            <td>
+                                                <a href="{% url 'team details' team_slug=team.slug pk=team.pk %}"><strong>{{ team.team_name }}</strong></a>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--End-->
+        </div>
+        <!--team Page End-->
+    </div>
+    <!--Main Content End-->
+{% endblock %}

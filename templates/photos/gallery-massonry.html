@@ -1,0 +1,78 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block page_content %}
+    <!--Header End-->
+    <!--Main Slider Start-->
+    <div class="inner-banner-header wf100">
+        <h1 data-generated="Gallery ">Gallery</h1>
+        <div class="gt-breadcrumbs">
+            <ul>
+                <li><a href="{% url 'index' %}" class="active"> <i class="fas fa-home"></i> Home </a></li>
+                <li><a href="{% url 'show photos' %}"> Gallery </a></li>
+            </ul>
+        </div>
+    </div>
+    <!--Main Slider Start-->
+    <!--Main Content Start-->
+    <div class="main-content innerpagebg wf100">
+        <!--Image Gallery Start-->
+        <div class="image-gallery gallery p80">
+            <div class="container">
+                <div class="massonry-gallery gallery">
+                    <div class="isotope items">
+                        {% for photo in photo_list %}
+                            <div class="item ">
+                                <div class="gallery-thumb"><a href="{% url 'details photo' pk=photo.pk %}"><i
+                                        class="fas fa-search"></i></a> <img src="/media/{{ photo.photo }}" alt=""></div>
+                            </div>
+                            <a href=""></a>
+                        {% endfor %}
+                    </div>
+                    {% if photos.has_other_pages %}
+                        <nav>
+                            <ul class="pagination justify-content-center">
+                                {% if photos.has_previous %}
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page={{ photos.previous_page_number }}"
+                                           aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                {% else %}
+                                    <li class="page-item disabled">
+                                        <span class="page-link" aria-hidden="true">&laquo;</span>
+                                    </li>
+                                {% endif %}
+
+                                {% for p in photos.paginator.page_range %}
+                                    {% if photos.number == p %}
+                                        <li class="page-item"><a class="page-link" style="color: red;"
+                                                                 href="#">{{ p }}</a></li>
+                                    {% else %}
+                                        <li class="page-item"><a class="page-link" href="?page={{ p }}">{{ p }}</a></li>
+                                    {% endif %}
+                                {% endfor %}
+
+                                {% if photos.has_next %}
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page={{ photos.next_page_number }}"
+                                           aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                {% else %}
+                                    <li class="page-item disabled">
+                                        <span class="page-link" aria-hidden="true">&raquo;</span>
+                                    </li>
+                                {% endif %}
+                            </ul>
+                        </nav>
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
+        <!--Image Gallery End-->
+    </div>
+    <!--Main Content End-->
+{% endblock %}

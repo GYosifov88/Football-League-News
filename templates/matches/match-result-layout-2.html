@@ -1,0 +1,111 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block page_content %}
+    <!--Header End-->
+    <!--Main Slider Start-->
+    <div class="inner-banner-header wf100">
+        <h1 data-generated="Matches">Matches</h1>
+        <div class="gt-breadcrumbs">
+            <ul>
+                <li><a href="{% url 'index' %}" class="active"> <i class="fas fa-home"></i> Home </a></li>
+                <li><a href="{% url 'matches' %}"> Matches </a></li>
+            </ul>
+        </div>
+    </div>
+    <!--Main Slider Start-->
+    <!--Main Content Start-->
+    <div class="main-content innerpagebg wf100">
+        <!--Match Result Start-->
+        <div class="match-results wf100 p80">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-10">
+                        <!--Box Start-->
+                        {% for match in matches %}
+                            <div class="last-match-result-full-light">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div class="match-left">
+                                            <div class="mtl-left"><img src="{{ match.home_team.team_logo_photo }}"
+                                                                       alt=""> <strong>{{ match.home_team }}</strong>
+                                            </div>
+                                            <div class="mscore"><strong>X</strong> ----</div>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="lmr-info">
+                                            <strong>{{ match.league }}</strong>
+                                            <p>{{ match.league_stage }}</p>
+                                            <img src="{% static 'images/sp.png' %}" alt="">
+                                            <p>{{ match.match_date }}</p>
+                                            <p>{{ match.match_location }}</p>
+                                            <a href="{% url 'match details' pk=match.pk %}" class="mh">Match Details</a>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+
+                                        <div class="match-right">
+                                            <div class="col-sm-6" >
+                                                <div class="mscore"><strong>X</strong> ----</div>
+                                            </div>
+                                            <div class="col-sm-6" style="float: right">
+                                                <div class="mtl-right"><img src="{{ match.guest_team.team_logo_photo }}"
+                                                                            alt="">
+                                                    <strong>{{ match.guest_team }}</strong>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Box End-->
+                        {% endfor %}
+                        {% if matches.has_other_pages %}
+                            <nav>
+                                <ul class="pagination justify-content-center">
+                                    {% if matches.has_previous %}
+                                        <li class="page-item">
+                                            <a class="page-link" href="?page={{ matches.previous_page_number }}"
+                                               aria-label="Previous">
+                                                <span aria-hidden="true">&laquo;</span>
+                                            </a>
+                                        </li>
+                                    {% else %}
+                                        <li class="page-item disabled">
+                                            <span class="page-link" aria-hidden="true">&laquo;</span>
+                                        </li>
+                                    {% endif %}
+
+                                    {% for p in matches.paginator.page_range %}
+                                        {% if matches.number == p %}
+                                            <li class="page-item"><a class="page-link" style="color: red;"
+                                                                     href="#">{{ p }}</a></li>
+                                        {% else %}
+                                            <li class="page-item"><a class="page-link" href="?page={{ p }}">{{ p }}</a>
+                                            </li>
+                                        {% endif %}
+                                    {% endfor %}
+
+                                    {% if matches.has_next %}
+                                        <li class="page-item">
+                                            <a class="page-link" href="?page={{ matches.next_page_number }}"
+                                               aria-label="Next">
+                                                <span aria-hidden="true">&raquo;</span>
+                                            </a>
+                                        </li>
+                                    {% else %}
+                                        <li class="page-item disabled">
+                                            <span class="page-link" aria-hidden="true">&raquo;</span>
+                                        </li>
+                                    {% endif %}
+                                </ul>
+                            </nav>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Main Content End-->
+{% endblock %}

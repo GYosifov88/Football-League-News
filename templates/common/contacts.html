@@ -1,0 +1,88 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block page_content %}
+    <!--Header End-->
+    <!--Main Slider Start-->
+    <div class="inner-banner-header wf100">
+        <h1 data-generated="Contact Us">Contact Us</h1>
+        <div class="gt-breadcrumbs">
+            <ul>
+                <li><a href="{% url 'index' %}" class="active"> <i class="fas fa-home"></i> Home </a></li>
+                <li><a href="{% url 'contacts' %}"> Contact Us </a></li>
+            </ul>
+        </div>
+    </div>
+    <!--Main Slider Start-->
+    <!--Main Content Start-->
+    <div class="main-content p80 innerpagebg wf100">
+        <!--Contact Page Start-->
+        <div class="contact-two">
+            <div class="container">
+                <div class="row mb-80">
+                    <!--Start-->
+                    <div class="col-md-4">
+                        <div class="contact-box">
+                            <img src="{% static 'images/loc-icon.png' %}" alt="">
+                            <h5>Address:</h5>
+                            <p> Dimcho Debelyanov #5, Varna,
+                                9000, Bulgaria
+                            </p>
+                        </div>
+                    </div>
+                    <!--End-->
+                    <!--Start-->
+                    <div class="col-md-4">
+                        <div class="contact-box">
+                            <img src="{% static 'images/phone-icon.png' %}" alt="">
+                            <h5>Contact:</h5>
+                            <p><strong>Phone:</strong> +359 888 123 456</p>
+                            <p><strong>Fax: </strong>+359 888 123 456 </p>
+                        </div>
+                    </div>
+                    <!--End-->
+                    <!--Start-->
+                    <div class="col-md-4">
+                        <div class="contact-box">
+                            <img src="{% static 'images/mail-icon.png' %}" alt="">
+                            <h5>For More Information:</h5>
+                            <p><strong>Email:</strong> gyosifov88@gmail.com</p>
+                            <p>gyosifov88@gmail.com</p>
+                        </div>
+                    </div>
+                    <!--End-->
+                </div>
+            </div>
+        </div>
+        <!--Contact Page End-->
+        <div class="google-map">
+            <div class="google-map">
+                <img src="{% static 'images/Football_site_map.jpg' %}" alt="">
+                {#                  <iframe src="{% static 'images/Football_site_map.jpg' %}"></iframe>#}
+            </div>
+        </div>
+        <div class="contact-two wf100 p80-0">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-1"></div>
+                    <!--Form Start-->
+                    <div class="col-lg-10">
+                        <div class="contact-form">
+                            <h2>Feel Free to Contact us</h2>
+                            <ul class="form-row">
+                                <form method="post" action="{% url 'contacts' %}">
+                                    {{ form.as_p }}
+                                    {#                              <li class="full-col">#}
+                                    <button>Contact us Now</button>
+                                    {#                              </li>#}
+                                    {% csrf_token %}
+                                </form>
+                            </ul>
+                        </div>
+                    </div>
+                    <!--Form End-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Main Content End-->
+{% endblock %}

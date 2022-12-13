@@ -1,0 +1,497 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" href="{% static 'images/fav.png' %}" type="image/png">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+    <link rel="stylesheet" href="{% static 'css/color.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/fontawesome.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/prettyPhoto.css' %}">
+    <!--Rev Slider Start-->
+    <link rel="stylesheet" href="{% static 'js/rev-slider/css/settings.css' %}" type='text/css' media='all'/>
+    <link rel="stylesheet" href="{% static 'js/rev-slider/css/layers.css' %}" type='text/css' media='all'/>
+    <link rel="stylesheet" href="{% static 'js/rev-slider/css/navigation.css' %}" type='text/css' media='all'/>
+    <!--Rev Slider End-->
+    <title>Football League News</title>
+</head>
+<body>
+<!--Wrapper Start-->
+<div class="wrapper gray-bg">
+    <!--Header Start-->
+    <header id="main-header" class="main-header white-header">
+        <!--topbar-->
+        <div class="topbar">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6">
+                        <ul class="topsocial">
+                        </ul>
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+                        <ul class="toplinks">
+                            {% if request.user.is_authenticated %}
+                                <li class="acctount-btn"><a href="{% url 'details user' pk=request.user.pk %}">My
+                                    Account</a></li>
+                                {#              <li class="search-btn"> <a class="search-icon" href="#search"><i class="fas fa-search"></i></a> </li>#}
+                                <a href="{% url 'logout user' %}">
+                                    <i>Sign out</i>
+                                </a>
+                            {% else %}
+                                <li class="nav-item">
+                                    <a href="{% url 'register user' %}">
+                                        <i>Sign up</i>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+
+                                    <a href="{% url 'login user' %}">
+                                        <i>Sign in</i>
+                                    </a>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--topbar end-->
+        <!--Logo + Navbar Start-->
+        <div class="logo-navbar">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-2 col-sm-5">
+                        <div class="logo"><a href="{% url 'index' %}"><img src="{% static 'images/logo-dark.png' %}"
+                                                                           alt=""></a></div>
+                    </div>
+                    <div class="col-md-10 col-sm-7">
+                        <nav class="main-nav">
+                            <ul>
+                                <li class="nav-item drop-down"><a href="">Home</a>
+                                    <ul>
+                                        <li><a href="{% url 'index' %}">Home</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item drop-down"><a href="">Matches</a>
+                                    <ul>
+                                        <li><a href="{% url 'matches' %}">Matches</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item drop-down"><a href="">Teams</a>
+                                    <ul>
+                                        <li><a href="{% url 'teams' %}">Teams</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item drop-down"><a href="">Players</a>
+                                    <ul>
+                                        <li><a href="{% url 'players' %}">Players</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item drop-down"><a href="">News</a>
+                                    <ul>
+                                        <li><a href="{% url 'articles' %}">News</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item drop-down"><a href="">Gallery</a>
+                                    {% if request.user.is_authenticated %}
+                                        <ul>
+                                            <li><a href="{% url 'show photos' %}">Gallery</a></li>
+                                            <li><a href="{% url 'add photo' %}">Add Photo</a></li>
+                                        </ul>
+                                    {% else %}
+                                        <ul>
+                                            <li><a href="{% url 'show photos' %}">Gallery</a></li>
+                                        </ul>
+                                    {% endif %}
+                                </li>
+                                <li class="nav-item drop-down"><a href="">Contact</a>
+                                    <ul>
+                                        <li><a href="{% url 'contacts' %}">Contact</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Logo + Navbar End-->
+    </header>
+    <!--Header End-->
+    <!--Main Slider Start-->
+    <div class="main-slider">
+        <div class="home2-slider rev_slider_wrapper">
+            <!-- START REVOLUTION SLIDER -->
+            <div class="rev_slider_wrapper fullwidthbanner-container">
+                <div id="rev-slider2" class="rev_slider fullwidthabanner">
+                    <ul>
+                        <li data-transition="fade"><img src="{% static 'images/slide1-bg.jpg' %}" alt="" width="1920"
+                                                        height="750" data-bgposition="top center" data-bgfit="cover"
+                                                        data-bgrepeat="no-repeat" data-bgparallax="1">
+                            <div class="tp-caption  tp-resizeme"
+                                 data-x="right" data-hoffset="350"
+                                 data-y="top" data-voffset="0"
+                                 data-transform_idle="o:1;"
+                                 data-transform_in="x:[-75%];y:0px;z:0;rX:0;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0.01;s:3000;e:Power3.easeOut;"
+                                 data-transform_out="s:1000;e:Power3.easeInOut;s:1000;e:Power3.easeInOut;"
+                                 data-mask_in="x:[100%];y:0;s:inherit;e:inherit;"
+                                 data-splitin="none"
+                                 data-splitout="none"
+                                 data-start="700">
+                                <div class="slide-content-box"><img src="{% static 'images/slide1-player.png' %}"
+                                                                    alt=""></div>
+                            </div>
+                            <div class="tp-caption  tp-resizeme"
+                                 data-x="right" data-hoffset="850"
+                                 data-y="bottom" data-voffset="100"
+                                 data-transform_idle="o:1;"
+                                 data-transform_in="x:[-75%];y:0px;z:0;rX:0;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0.01;s:3000;e:Power3.easeOut;"
+                                 data-transform_out="s:1000;e:Power3.easeInOut;s:1000;e:Power3.easeInOut;"
+                                 data-mask_in="x:[100%];y:0;s:inherit;e:inherit;"
+                                 data-splitin="none"
+                                 data-splitout="none"
+                                 data-start="700">
+                                <div class="slide-content-box"><img src="{% static 'images/slide1-football.png' %}"
+                                                                    alt=""></div>
+                            </div>
+                            <div class="tp-caption  tp-resizeme"
+                                 data-x="left" data-hoffset="400"
+                                 data-y="top" data-voffset="175"
+                                 data-transform_idle="o:1;"
+                                 data-transform_in="x:[-75%];y:0px;z:0;rX:0;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0.01;s:3000;e:Power3.easeOut;"
+                                 data-transform_out="s:1000;e:Power3.easeInOut;s:1000;e:Power3.easeInOut;"
+                                 data-mask_in="x:[100%];y:0;s:inherit;e:inherit;"
+                                 data-splitin="none"
+                                 data-splitout="none"
+                                 data-start="700">
+                                <div class="slide-content-box">
+                                    <h1><span>Want to be informed all the time:</span><br>
+                                        Always The Latest News </h1>
+                                </div>
+                            </div>
+                            <div class="tp-caption  tp-resizeme"
+                                 data-x="left" data-hoffset="400"
+                                 data-y="top" data-voffset="400"
+                                 data-transform_idle="o:1;"
+                                 data-transform_in="x:[-175%];y:0px;z:0;rX:0;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0.01;s:3000;e:Power3.easeOut;"
+                                 data-transform_out="s:1000;e:Power3.easeInOut;s:1000;e:Power3.easeInOut;"
+                                 data-mask_in="x:[100%];y:0;s:inherit;e:inherit;"
+                                 data-splitin="none"
+                                 data-splitout="none"
+                                 data-start="700">
+                                <div class="slide-content-box"><a href="{% url 'articles' %}">Learn More</a></div>
+                            </div>
+                        </li>
+                        <li data-transition="fade"><img src="{% static 'images/slide2-bg.jpg' %}" alt="" width="1920"
+                                                        height="750" data-bgposition="top center" data-bgfit="cover"
+                                                        data-bgrepeat="no-repeat" data-bgparallax="1">
+                            <div class="tp-caption  tp-resizeme"
+                                 data-x="right" data-hoffset="400"
+                                 data-y="top" data-voffset="0"
+                                 data-transform_idle="o:1;"
+                                 data-transform_in="x:[-75%];y:0px;z:0;rX:0;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0.01;s:3000;e:Power3.easeOut;"
+                                 data-transform_out="s:1000;e:Power3.easeInOut;s:1000;e:Power3.easeInOut;"
+                                 data-mask_in="x:[100%];y:0;s:inherit;e:inherit;"
+                                 data-splitin="none"
+                                 data-splitout="none"
+                                 data-start="700">
+                                <div class="slide-content-box"><img src="{% static 'images/slide2player.png' %}" alt="">
+                                </div>
+                            </div>
+                            <div class="tp-caption  tp-resizeme"
+                                 data-x="left" data-hoffset="400"
+                                 data-y="top" data-voffset="175"
+                                 data-transform_idle="o:1;"
+                                 data-transform_in="x:[-75%];y:0px;z:0;rX:0;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0.01;s:3000;e:Power3.easeOut;"
+                                 data-transform_out="s:1000;e:Power3.easeInOut;s:1000;e:Power3.easeInOut;"
+                                 data-mask_in="x:[100%];y:0;s:inherit;e:inherit;"
+                                 data-splitin="none"
+                                 data-splitout="none"
+                                 data-start="700">
+                                <div class="slide-content-box">
+                                    <h1><span>Matches:</span><br>
+                                        Most interesting matches </h1>
+                                </div>
+                            </div>
+                            <div class="tp-caption  tp-resizeme"
+                                 data-x="left" data-hoffset="400"
+                                 data-y="top" data-voffset="420"
+                                 data-transform_idle="o:1;"
+                                 data-transform_in="x:[-175%];y:0px;z:0;rX:0;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0.01;s:3000;e:Power3.easeOut;"
+                                 data-transform_out="s:1000;e:Power3.easeInOut;s:1000;e:Power3.easeInOut;"
+                                 data-mask_in="x:[100%];y:0;s:inherit;e:inherit;"
+                                 data-splitin="none"
+                                 data-splitout="none"
+                                 data-start="700">
+                                <div class="slide-content-box"><a href="{% url 'matches' %}">Learn More</a></div>
+                            </div>
+                        </li>
+                        <li data-transition="fade"><img src="{% static 'images/slide3bg.jpg' %}" alt="" width="1920"
+                                                        height="750" data-bgposition="top center" data-bgfit="cover"
+                                                        data-bgrepeat="no-repeat" data-bgparallax="1">
+                            <div class="tp-caption  tp-resizeme"
+                                 data-x="right" data-hoffset="350"
+                                 data-y="top" data-voffset="0"
+                                 data-transform_idle="o:1;"
+                                 data-transform_in="x:[-75%];y:0px;z:0;rX:0;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0.01;s:3000;e:Power3.easeOut;"
+                                 data-transform_out="s:1000;e:Power3.easeInOut;s:1000;e:Power3.easeInOut;"
+                                 data-mask_in="x:[100%];y:0;s:inherit;e:inherit;"
+                                 data-splitin="none"
+                                 data-splitout="none"
+                                 data-start="700">
+                                <div class="slide-content-box"><img src="{% static 'images/slide3player.png' %}" alt="">
+                                </div>
+                            </div>
+                            <div class="tp-caption  tp-resizeme"
+                                 data-x="left" data-hoffset="400"
+                                 data-y="top" data-voffset="175"
+                                 data-transform_idle="o:1;"
+                                 data-transform_in="x:[-75%];y:0px;z:0;rX:0;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0.01;s:3000;e:Power3.easeOut;"
+                                 data-transform_out="s:1000;e:Power3.easeInOut;s:1000;e:Power3.easeInOut;"
+                                 data-mask_in="x:[100%];y:0;s:inherit;e:inherit;"
+                                 data-splitin="none"
+                                 data-splitout="none"
+                                 data-start="700">
+                                <div class="slide-content-box">
+                                    <h1><span>Players</span><br>
+                                        Get Top Players Info... </h1>
+                                </div>
+                            </div>
+                            <div class="tp-caption  tp-resizeme"
+                                 data-x="left" data-hoffset="400"
+                                 data-y="top" data-voffset="420"
+                                 data-transform_idle="o:1;"
+                                 data-transform_in="x:[-175%];y:0px;z:0;rX:0;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0.01;s:3000;e:Power3.easeOut;"
+                                 data-transform_out="s:1000;e:Power3.easeInOut;s:1000;e:Power3.easeInOut;"
+                                 data-mask_in="x:[100%];y:0;s:inherit;e:inherit;"
+                                 data-splitin="none"
+                                 data-splitout="none"
+                                 data-start="700">
+                                <div class="slide-content-box"><a href="{% url 'players' %}">Learn More</a></div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- END REVOLUTION SLIDER -->
+        </div>
+    </div>
+    <!--Main Slider Start-->
+    <!--Main Content Start-->
+
+    <!--News & Updates Start-->
+    <section class="news-updates wf100 p90">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="section-title">
+                        <h2>News Updates</h2>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div id="newsupdate-slider" class="owl-carousel owl-theme">
+                        {% for article in articles %}
+                            <!--Item Start-->
+                            <div class="item">
+                                <div class="hnews-box">
+                                    <div class="thumb"><a href="{% url 'article details' pk=article.pk %}"><i
+                                            class="fas fa-link"></i></a><img src="/media/{{ article.photo }}" alt="">
+                                    </div>
+                                    <div class="hnews-txt">
+                                        <ul class="news-meta">
+                                            <li><i class="fas fa-calendar-alt"></i> {{ article.publication_date }}</li>
+                                        </ul>
+                                        <h4><a href="#">{{ article.title }}</a></h4>
+                                        <a class="rm" href="{% url 'article details' pk=article.pk %}">News Detail <i
+                                                class="fas fa-arrow-right"></i></a></div>
+                                </div>
+                            </div>
+                            <!--Item End-->
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--News & Updates End-->
+    <!--Gallery Start-->
+
+    <section class="wf100 p90 h3-match-gallery">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="h3-section-title"><strong>Match Image Collection</strong>
+                        <h2>Match Image Collection</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-md-12 p-05">
+                    {% for photo in photos %}
+                        <div class="hlg-thumb col-md-4">
+                            <p>
+                            <div class="gallery-thumb"><a href="{% url 'details photo' pk=photo.pk %}"><i
+                                    class="fas fa-search"></i></a> <img src="/media/{{ photo.photo }}" alt=""></div>
+                            ></p>
+                        </div>
+                    {% endfor %}
+                </div>
+
+            </div>
+
+            <p></p>
+            <button class="edit-own"><a class="team-my-a" href="{% url 'show photos' %}">See more>></a></button>
+            {#      {% if photos.has_other_pages %}#}
+            {#    <nav>#}
+            {#      <ul class="pagination justify-content-left">#}
+            {#        {% if photos.has_previous %}#}
+            {#          <li class="page-item">#}
+            {#            <a class="page-link" href="?page={{ photos.previous_page_number }}" aria-label="Previous">#}
+            {#              <span aria-hidden="true">&laquo;</span>#}
+            {#            </a>#}
+            {#          </li>#}
+            {#        {% else %}#}
+            {#          <li class="page-item disabled">#}
+            {#              <span class="page-link" aria-hidden="true">&laquo;</span>#}
+            {#          </li>#}
+            {#        {% endif %}#}
+            {##}
+            {#        {% for p in photos.paginator.page_range %}#}
+            {#          {% if photos.number == p %}#}
+            {#            <li class="page-item"><a class="page-link" style="color: red;" href="#">{{ p }}</a></li>#}
+            {#          {% else %}#}
+            {#            <li class="page-item"><a class="page-link" href="?page={{ p }}">{{ p }}</a></li>#}
+            {#          {% endif %}#}
+            {#        {% endfor %}#}
+            {##}
+            {#        {% if photos.has_next %}#}
+            {#          <li class="page-item">#}
+            {#            <a class="page-link" href="?page={{ photos.next_page_number }}" aria-label="Next">#}
+            {#              <span aria-hidden="true">&raquo;</span>#}
+            {#            </a>#}
+            {#          </li>#}
+            {#        {% else %}#}
+            {#          <li class="page-item disabled">#}
+            {#            <span class="page-link" aria-hidden="true">&raquo;</span>#}
+            {#          </li>#}
+            {#        {% endif %}#}
+            {#    </ul>#}
+            {#    </nav>#}
+            {#  {% endif %}#}
+        </div>
+    </section>
+    <!--Main Content End-->
+    <!--Main Footer Start-->
+    <footer class="wf100 footer-three">
+        <!--Footer Widgets Start-->
+        <div class="footer-widgets">
+            <div class="container">
+                <div class="row">
+                    <!--Footer Widget Start-->
+                    <div class="col-lg-4 col-sm-6">
+                        <div class="footer-widget about-widget br-right">
+                            <h4>About Soccer</h4>
+                            <p>Interesting news and photos from the best matches</p>
+                        </div>
+                    </div>
+                    <!--Footer Widget End-->
+                    <!--Footer Widget Start-->
+                    <div class="col-lg-2 col-sm-6">
+                        <div class="footer-widget">
+                            <h4>Information</h4>
+                            <ul class="quick-links">
+                                <li><a href="{% url 'teams' %}"><i class="fas fa-angle-double-right"></i> Teams</a></li>
+                                <li><a href="{% url 'players' %}"><i class="fas fa-angle-double-right"></i> Players</a>
+                                </li>
+                                <li><a href="{% url 'show photos' %}"><i class="fas fa-angle-double-right"></i> Gallery</a>
+                                </li>
+                                <li><a href="{% url 'contacts' %}"><i class="fas fa-angle-double-right"></i> Contact us</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="footer-widget contact-widget">
+                            <h4>Contact Detail</h4>
+                            <address>
+                                <ul>
+                                    <li><i class="fas fa-map-marker-alt"></i> Varna Varna #1, Varna, 9000,
+                                        Bulgaria
+                                    </li>
+                                    <li><i class="fas fa-phone"></i> +359 888 123 456</li>
+                                    <li><i class="fas fa-envelope"></i> gyosifov88@gmail.com
+                                        gyosifov88@gmail.com
+                                    </li>
+                                    <li><i class="fas fa-phone"></i> www.footballnews.com</li>
+                                </ul>
+                            </address>
+                        </div>
+                    </div>
+
+                    <!--Footer Widget End-->
+
+                </div>
+            </div>
+        </div>
+
+        <!--Footer Widgets End-->
+
+        <div class="footer-bottom wf100">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="flogo"><a href="#"><img src="{% static 'images/logo.png' %}" alt=""></a></div>
+                    </div>
+                    <div class="col-md-4">
+                        <p class="cr"> All Rights Reserved of Ecova © 2020, Design & Developed By: <a
+                                href="#">GramoTech</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--Main Footer End-->
+</div>
+<!--Wrapper End-->
+<!-- Optional JavaScript -->
+<script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+<script src="{% static 'js/jquery-migrate-3.0.1.js' %}"></script>
+<script src="{% static 'js/popper.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/mobile-nav.js' %}"></script>
+<script src="{% static 'js/owl.carousel.min.js' %}"></script>
+<script src="{% static 'js/isotope.js' %}"></script>
+<script src="{% static 'js/jquery.prettyPhoto.js' %}"></script>
+<script src="{% static 'js/jquery.countdown.js' %}"></script>
+<script src="{% static 'js/custom.js' %}"></script>
+<!--Rev Slider Start-->
+<script type="text/javascript" src="{% static 'js/rev-slider/js/jquery.themepunch.tools.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/rev-slider/js/jquery.themepunch.revolution.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/rev-slider.js' %}"></script>
+<script type="text/javascript"
+        src="{% static 'js/rev-slider/js/extensions/revolution.extension.actions.min.js' %}"></script>
+<script type="text/javascript"
+        src="{% static 'js/rev-slider/js/extensions/revolution.extension.carousel.min.js' %}"></script>
+<script type="text/javascript"
+        src="{% static 'js/rev-slider/js/extensions/revolution.extension.kenburn.min.js' %}"></script>
+<script type="text/javascript"
+        src="{% static 'js/rev-slider/js/extensions/revolution.extension.layeranimation.min.js' %}"></script>
+<script type="text/javascript"
+        src="{% static 'js/rev-slider/js/extensions/revolution.extension.migration.min.js' %}"></script>
+<script type="text/javascript"
+        src="{% static 'js/rev-slider/js/extensions/revolution.extension.navigation.min.js' %}"></script>
+<script type="text/javascript"
+        src="{% static 'js/rev-slider/js/extensions/revolution.extension.parallax.min.js' %}"></script>
+<script type="text/javascript"
+        src="{% static 'js/rev-slider/js/extensions/revolution.extension.slideanims.min.js' %}"></script>
+<script type="text/javascript"
+        src="{% static 'js/rev-slider/js/extensions/revolution.extension.video.min.js' %}"></script>
+</body>
+</html>
